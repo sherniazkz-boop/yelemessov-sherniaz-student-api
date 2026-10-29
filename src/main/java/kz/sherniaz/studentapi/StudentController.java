@@ -21,7 +21,7 @@ public class StudentController {
     public Student create(@RequestBody Student s) { return repo.save(s); }
 
     @GetMapping("/students")
-    public List<Student> all() { return repo.findAll(); // Sherniaz: list all students }
+    public List<Student> all() { return repo.findAll(); /* Sherniaz: list all students */ }
 
     @GetMapping("/students/{id}")
     public ResponseEntity<?> one(@PathVariable Long id) {
