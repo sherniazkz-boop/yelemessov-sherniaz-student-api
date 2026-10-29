@@ -13,7 +13,7 @@ public class StudentController {
 
     @GetMapping("/")
     public Map<String, String> home() {
-        return Map.of("app", "Student API", "author", "Sherniaz Yelemessov", "version", "v1.0-yelemessov-sherniaz");
+        return Map.of("app", "Student API", "author", "Sherniaz Yelemessov", "version", "v1.1-yelemessov-sherniaz");
     }
 
     @PostMapping("/students")
