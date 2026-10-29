@@ -1,0 +1,41 @@
+name: yelemessov-sherniaz-student-api
+
+services:
+  app:
+    build: .
+    image: yelemessov-sherniaz-student-api:v1.0-yelemessov-sherniaz
+    container_name: yelemessov-sherniaz-app
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/${POSTGRES_DB:-studentdb}
+      DB_USER: ${POSTGRES_USER:-student}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-change_me}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - sherniaz-net
+
+  db:
+    image: postgres:16
+    container_name: yelemessov-sherniaz-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-studentdb}
+      POSTGRES_USER: ${POSTGRES_USER:-student}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me}
+    volumes:
+      - sherniaz-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-student} -d ${POSTGRES_DB:-studentdb}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - sherniaz-net
+
+volumes:
+  sherniaz-pgdata:
+
+networks:
+  sherniaz-net:
