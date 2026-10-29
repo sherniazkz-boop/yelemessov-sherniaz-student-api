@@ -8,3 +8,4 @@ Run: `docker compose up -d --build`
 ## Change by Sherniaz Yelemessov
 Improved the GET /students (read-all) operation.
 Status: ready for release v1.0
+Status: documentation by Sherniaz Yelemessov
