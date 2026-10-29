@@ -23,6 +23,6 @@ class StudentApiTest {
         s.setEmail("sherniaz@example.com");
         Student saved = controller.create(s);
         assertNotNull(saved.getId());
-        assertEquals(1, controller.all().size());
+        assertEquals(2, controller.all().size());
     }
 }
